@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b1120">
+  <meta name="description" content="A private, educational tool for spotting common phishing warning signs in messages.">
+  <title>Phishing Awareness Analysis</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#home" aria-label="Signal Check home">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M12 3 20 6v5.5c0 4.7-3.4 8-8 9.5-4.6-1.5-8-4.8-8-9.5V6l8-3Z" stroke="currentColor" stroke-width="1.8"/><path d="m8.5 12 2.2 2.2 4.8-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+      <span>signal<span class="brand-light">check</span></span>
+    </a>
+    <nav aria-label="Main navigation">
+      <a href="#analyzer">Message analyzer</a>
+      <a href="#learn">Learn</a>
+      <a class="nav-cta" href="#analyzer">Check a message <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="pulse-dot"></span> YOUR FIRST LINE OF DEFENSE</div>
+        <h1>Pause. Check.<br><span>Stay one step ahead.</span></h1>
+        <p class="hero-description">Not sure about a message? Check it for common phishing warning signs before you click, reply, or share anything.</p>
+        <a class="button button-primary" href="#analyzer">Analyze a message <span aria-hidden="true">↓</span></a>
+        <div class="privacy-note"><span aria-hidden="true">◈</span> Analysis happens in your browser. Your message stays on your device.</div>
+      </div>
+      <div class="hero-art" aria-label="Illustration of a protected inbox">
+        <div class="orbit orbit-one"></div>
+        <div class="orbit orbit-two"></div>
+        <div class="scan-line"></div>
+        <div class="mail-card">
+          <div class="mail-top"><span class="mail-icon">✉</span><span class="mail-dots">•••</span></div>
+          <div class="mail-line line-long"></div><div class="mail-line line-medium"></div>
+          <div class="mail-warning"><span>!</span> Suspicious message detected</div>
+          <div class="mail-line line-short"></div><div class="mail-line line-medium faded"></div>
+        </div>
+        <div class="shield-badge">
+          <svg viewBox="0 0 64 72" fill="none" aria-hidden="true"><path d="M32 4 57 13v18c0 17-10.6 29.2-25 37C17.6 60.2 7 48 7 31V13L32 4Z" fill="url(#shield-gradient)" stroke="#65e6bb" stroke-width="2"/><path d="m21 35 7 7 15-16" stroke="#062a2b" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><defs><linearGradient id="shield-gradient" x1="9" y1="8" x2="53" y2="66" gradientUnits="userSpaceOnUse"><stop stop-color="#83f2ce"/><stop offset="1" stop-color="#38b9a4"/></linearGradient></defs></svg>
+        </div>
+        <div class="floating-tag"><span class="tag-dot"></span> CHECK BEFORE YOU CLICK</div>
+      </div>
+      <div class="hero-bottom">
+        <div class="hero-stat"><strong>01</strong><span>Paste a message</span></div>
+        <span class="stat-divider"></span>
+        <div class="hero-stat"><strong>02</strong><span>Review the signals</span></div>
+        <span class="stat-divider"></span>
+        <div class="hero-stat"><strong>03</strong><span>Choose a safer next step</span></div>
+      </div>
+    </section>
+
+    <section class="analyzer-section section-wrap" id="analyzer">
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow"><span class="section-index">01</span> MESSAGE ANALYZER</div>
+          <h2>Something feel <span>off?</span></h2>
+          <p>Paste the text below. We’ll look for common red flags—without sending it anywhere.</p>
+        </div>
+        <div class="local-badge"><span>●</span> 100% LOCAL ANALYSIS</div>
+      </div>
+      <div class="analyzer-card">
+        <label for="message-input">MESSAGE CONTENT <span>Include the sender and message text for a better check</span></label>
+        <textarea id="message-input" rows="8" maxlength="10000" placeholder="Paste an email, text message, or other communication here..."></textarea>
+        <div class="input-footer">
+          <span id="character-count">0 / 10,000</span>
+          <div class="sample-actions">
+            <span>Try a sample:</span>
+            <button class="text-button" type="button" data-sample="safe">Safe message</button>
+            <button class="text-button sample-phishing" type="button" data-sample="phishing">Phishing example</button>
+          </div>
+        </div>
+        <div class="analyze-row">
+          <p><span aria-hidden="true">ⓘ</span> This tool checks text patterns, not the actual safety of a website.</p>
+          <button class="button button-analyze" id="analyze-button" type="button"><span class="button-shield" aria-hidden="true">⌕</span> Analyze message <span aria-hidden="true">→</span></button>
+        </div>
+        <p class="input-error" id="input-error" role="alert" hidden></p>
+      </div>
+      <div class="results" id="results" aria-live="polite" hidden></div>
+    </section>
+
+    <section class="signals-section section-wrap">
+      <div class="eyebrow"><span class="section-index">02</span> WHAT WE LOOK FOR</div>
+      <h2>Small clues. <span>Big difference.</span></h2>
+      <p class="section-intro">Phishing can be convincing. These are some of the signals worth a second look.</p>
+      <div class="signal-grid">
+        <article class="signal-card"><span class="signal-icon icon-orange">↗</span><h3>Unusual links</h3><p>Unexpected URLs, shortened links, or web addresses that don’t match the claimed organization.</p></article>
+        <article class="signal-card"><span class="signal-icon icon-red">⌛</span><h3>Pressure tactics</h3><p>Urgent deadlines, threats, or warnings designed to rush you into acting without checking.</p></article>
+        <article class="signal-card"><span class="signal-icon icon-violet">◇</span><h3>Sensitive requests</h3><p>Messages asking you to share a password, one-time code, payment, or personal details.</p></article>
+        <article class="signal-card"><span class="signal-icon icon-green">⊙</span><h3>Sender mismatch</h3><p>Display names and email addresses that don’t line up, or addresses from unfamiliar domains.</p></article>
+      </div>
+      <p class="signals-caveat"><span>!</span> A red flag doesn’t prove a message is malicious—and no red flags doesn’t guarantee it’s safe.</p>
+    </section>
+
+    <section class="learn-section" id="learn">
+      <div class="section-wrap learn-layout">
+        <div class="learn-copy">
+          <div class="eyebrow"><span class="section-index">03</span> KNOW THE SIGNS</div>
+          <h2>What is <span>phishing?</span></h2>
+          <p>Phishing is a type of scam where someone impersonates a trusted person or organization to trick you into revealing information, sending money, or taking an unsafe action.</p>
+          <p>It can arrive by email, text, phone call, social media, or a fake website. Messages often imitate familiar brands and use urgency to make you act before you think.</p>
+          <a href="#safety" class="learn-link">Explore safer habits <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="learn-panel">
+          <div class="panel-top"><span class="panel-icon">⌁</span><span>COMMON PHISHING TECHNIQUES</span></div>
+          <div class="technique"><span class="tech-number">01</span><div><strong>Impersonation</strong><p>Pretending to be your bank, employer, delivery service, or someone you know.</p></div></div>
+          <div class="technique"><span class="tech-number">02</span><div><strong>Urgency & fear</strong><p>Claiming your account will be locked or a payment is overdue unless you act now.</p></div></div>
+          <div class="technique"><span class="tech-number">03</span><div><strong>Fake sign-in pages</strong><p>Sending you to a look-alike page to capture your login details or verification code.</p></div></div>
+          <div class="technique"><span class="tech-number">04</span><div><strong>Unexpected files</strong><p>Encouraging you to open an attachment or download something you weren’t expecting.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="safety-section section-wrap" id="safety">
+      <div class="safety-title">
+        <div class="eyebrow"><span class="section-index">04</span> YOUR SAFETY CHECKLIST</div>
+        <h2>Make the <span>safe move.</span></h2>
+        <p>A few seconds of checking can save you a lot of trouble.</p>
+      </div>
+      <div class="safety-list">
+        <div><span class="check">✓</span><p><strong>Stop before you click.</strong> Be extra cautious when a message is unexpected or alarming.</p></div>
+        <div><span class="check">✓</span><p><strong>Verify another way.</strong> Contact the person or organization using a number or website you already trust.</p></div>
+        <div><span class="check">✓</span><p><strong>Keep secrets private.</strong> Never share passwords or one-time codes in response to an unsolicited message.</p></div>
+        <div><span class="check">✓</span><p><strong>Report and delete.</strong> Use your email or workplace reporting process for suspicious messages.</p></div>
+      </div>
+    </section>
+
+    <section class="disclaimer">
+      <div class="disclaimer-icon">i</div>
+      <div><strong>A note about this tool</strong><p>This website is for educational and cybersecurity awareness purposes only. It uses simple text-based checks and cannot guarantee whether a message is safe or malicious. Never rely on this analyzer alone to make security decisions.</p></div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <a class="brand footer-brand" href="#home"><span class="brand-mark" aria-hidden="true">◈</span><span>signal<span class="brand-light">check</span></span></a>
+    <span>Think before you click. Stay safer online.</span>
+    <a href="#home">Back to top ↑</a>
+  </footer>
+</body>
+</html>
